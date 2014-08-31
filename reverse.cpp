@@ -20,27 +20,30 @@ string words [MAX_NUM_WORDS];
 
 	//check to see if the command arg. are valid
 	if(argc != 2){
-		cout << "Usage reverse [reverseTemplateFile]." << endl;
+		cout << "Usage: reverse [reverseTemplateFile]." << endl;
 	return 1;
 	}// end if
 	
 	// open the file
-	ifstream streets(argv[1]);
-	if(!streets){
-		cout << "Couldn't open template file " argv[1] << "!" << endl;
-		return 2;
-	 }// end if
-	
+	 ifstream directions(argv[1]);
+        if(!directions){
+		cout << "Could not open template file " << argv[1] << "!" << endl;
+		 return 2;
+        } //end if
+
 	//Now read the file!
 	int wordNum=0;
-	while(streets){
+	directions >> words[wordNum];
+	while(directions){
 		wordNum++;
-		words[wordNum];
+			cout << "I am in the while loop." << wordNum << endl;
+		
 	}//end while loop
 
 	//prints out the list
 	for(int i=0; i<=wordNum; i++){
 		cout<< words[i] << endl;
+		cout << "in the print method" << endl;
 	} //end for
 	
 }// end of main
