@@ -16,6 +16,9 @@ using namespace std;
 const int MAX_NUM_WORDS = 10000;
 
 int main(int argc, char *argv[]){
+double cost =0;
+double mpg=0;
+
 string words [MAX_NUM_WORDS];
 
 	//check to see if the command arg. are valid
@@ -31,19 +34,28 @@ string words [MAX_NUM_WORDS];
 		 return 2;
         } //end if
 
+	
 	//Now read the file!
 	int wordNum=0;
 	directions >> words[wordNum];
 	while(directions){
 		wordNum++;
-			cout << "I am in the while loop." << wordNum << endl;
-		
+		directions>>words[wordNum];		
+	
 	}//end while loop
-
+	
+	cout <<"How much does gas cost (in/gallons)? ";
+	cin >> cost;
+	cout << endl <<  "What is your gas mileage (in mpg)? ";
+	cin >> mpg;
+	cout <<  endl << endl << endl;
+	
+	
 	//prints out the list
 	for(int i=0; i<=wordNum; i++){
 		cout<< words[i] << endl;
-		cout << "in the print method" << endl;
 	} //end for
 	
 }// end of main
+
+
