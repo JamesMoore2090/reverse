@@ -19,7 +19,9 @@ int main(int argc, char *argv[]){
 double cost =0;
 double mpg=0;
 
-string words [MAX_NUM_WORDS];
+string direction [MAX_NUM_WORDS];
+string streetName [MAX_NUM_WORDS];
+string mileage [MAX_NUM_WORDS];
 
 	//check to see if the command arg. are valid
 	if(argc != 2){
@@ -28,8 +30,8 @@ string words [MAX_NUM_WORDS];
 	}// end if
 	
 	// open the file
-	 ifstream directions(argv[1]);
-        if(!directions){
+	 ifstream file(argv[1]);
+        if(!file){
 		cout << "Could not open template file " << argv[1] << "!" << endl;
 		 return 2;
         } //end if
@@ -37,13 +39,15 @@ string words [MAX_NUM_WORDS];
 	
 	//Now read the file!
 	int wordNum=0;
-	directions >> words[wordNum];
-	while(directions){
-		wordNum++;
-		directions>>words[wordNum];		
-	
-	}//end while loop
-	
+
+	while(file){
+	wordNum++;	
+		getline(file,direction[wordNum]);
+		getline(file,streetName[wordNum]);
+		getline(file,mileage[wordNum]);		
+	} // while loop	
+	cout << wordNum << endl;
+
 	cout <<"How much does gas cost (in/gallons)? ";
 	cin >> cost;
 	cout << endl <<  "What is your gas mileage (in mpg)? ";
@@ -52,8 +56,10 @@ string words [MAX_NUM_WORDS];
 	
 	
 	//prints out the list
-	for(int i=0; i<=wordNum; i++){
-		cout<< words[i] << endl;
+	for(int i=wordNum-1; i>=0; i--){
+		cout<< direction[i] << endl;
+		cout << streetName[i] << endl;
+		cout << mileage[i] << endl;
 	} //end for
 	
 }// end of main
