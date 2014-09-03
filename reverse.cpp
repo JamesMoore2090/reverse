@@ -9,7 +9,7 @@
 #include <iostream>
 #include <fstream>
 #include <cmath>
-#include <cstdlib>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -22,6 +22,11 @@ double mpg=0;
 string direction [MAX_NUM_WORDS];
 string streetName [MAX_NUM_WORDS];
 string mileage [MAX_NUM_WORDS];
+string UMW;
+string numDir;
+string destination;
+string location;
+double mile;
 
 	//check to see if the command arg. are valid
 	if(argc != 2){
@@ -38,29 +43,40 @@ string mileage [MAX_NUM_WORDS];
 
 	
 	//Now read the file!
-	int wordNum=0;
-
-	while(file){
-	wordNum++;	
-		getline(file,direction[wordNum]);
-		getline(file,streetName[wordNum]);
-		getline(file,mileage[wordNum]);		
-	} // while loop	
-	cout << wordNum << endl;
-
+	getline(file,UMW);
+	getline(file,numDir);	
+	int NumDirection =atoi(numDir.c_str());
+	for (int i=0;i < NumDirection;i++){
+		getline(file,direction[i]);
+		getline(file,streetName[i]);
+		getline(file,mileage[i]);		
+		mile=atof(mileage[i].c_str());
+		int a=0;
+		mile=a+mile;
+	} // for loop	
+	getline(file,destination);
+	getline(file,location);
+	
+	cout << mile << " this is the total mileage!" << endl
 	cout <<"How much does gas cost (in/gallons)? ";
 	cin >> cost;
-	cout << endl <<  "What is your gas mileage (in mpg)? ";
+	cout << endl;
+	cout << "What is your gas mileage (in mpg)? ";
 	cin >> mpg;
-	cout <<  endl << endl << endl;
-	
-	
+	cout <<  endl;	
+	cout << "This is the location of your starting location " << UMW << "." << endl;
+	cout << "this is how many directions are in the file" << NumDirection  << endl;
+		
 	//prints out the list
-	for(int i=wordNum-1; i>=0; i--){
-		cout<< direction[i] << endl;
-		cout << streetName[i] << endl;
-		cout << mileage[i] << endl;
+	for(int a = 0; a < NumDirection ; a++){
+		cout << direction[a] << endl;
+		cout<< mileage[a] << endl;
+		cout << streetName[a] << endl;
+		
 	} //end for
+	cout << destination << " This is the final destination." << endl;
+	cout << location << " This is the where the final location is" << endl;
+
 	
 }// end of main
 
