@@ -15,6 +15,7 @@ using namespace std;
 
 const int MAX_NUM_WORDS = 10000;
 
+
 int main(int argc, char *argv[]){
 double cost =0;
 double mpg=0;
@@ -27,6 +28,7 @@ string numDir;
 string destination;
 string location;
 double mile;
+double gasTotal;
 
 	//check to see if the command arg. are valid
 	if(argc != 2){
@@ -35,49 +37,33 @@ double mile;
 	}// end if
 	
 	// open the file
-	 ifstream file(argv[1]);
+	ifstream file(argv[1]);
         if(!file){
 		cout << "Could not open template file " << argv[1] << "!" << endl;
 		 return 2;
         } //end if
 
-	
 	//Now read the file!
-	getline(file,UMW);
-	getline(file,numDir);	
-	int NumDirection =atoi(numDir.c_str());
+	getline(file,UMW);// gets the starting location
+	getline(file,numDir); // gets the number of directions
+	int NumDirection =atoi(numDir.c_str()); //turns the string into an int
 	for (int i=0;i < NumDirection;i++){
 		getline(file,direction[i]);
 		getline(file,streetName[i]);
 		getline(file,mileage[i]);		
-		mile=atof(mileage[i].c_str());
-		int a=0;
-		mile=a+mile;
 	} // for loop	
-	getline(file,destination);
-	getline(file,location);
+	getline(file,destination);// get the final destination
+	getline(file,location);// which side is the final destination on
+		
 	
-	cout << mile << " this is the total mileage!" << endl
-	cout <<"How much does gas cost (in/gallons)? ";
-	cin >> cost;
-	cout << endl;
-	cout << "What is your gas mileage (in mpg)? ";
-	cin >> mpg;
-	cout <<  endl;	
-	cout << "This is the location of your starting location " << UMW << "." << endl;
-	cout << "this is how many directions are in the file" << NumDirection  << endl;
-		
-	//prints out the list
-	for(int a = 0; a < NumDirection ; a++){
-		cout << direction[a] << endl;
-		cout<< mileage[a] << endl;
-		cout << streetName[a] << endl;
-		
+	
+// below here prints out the directions	
+	cout << "How much does your gas (in/per gallons)? " << cost<< endl;
+	cout << "What is your gas mileage (in mpg)? " << mpg << endl;
+	cout << "Start location " << destination << endl;	
+	for(int a = 0; a < NumDirection ; a++){	
+		cout << direction[a] << " on " << streetName[a] << " ("<< mileage[a] << " miles)" << endl;	
 	} //end for
-	cout << destination << " This is the final destination." << endl;
-	cout << location << " This is the where the final location is" << endl;
-
-	
+	cout << destination << "is on the " << location << endl;
+	cout << "Your " << mile << "-mile round trip will cost you " << gasTotal << endl;
 }// end of main
-
-
