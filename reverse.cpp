@@ -19,10 +19,9 @@ const int MAX_NUM_WORDS = 10000;
 int main(int argc, char *argv[]){
 double cost =0;
 double mpg=0;
-
-string direction [MAX_NUM_WORDS];
-string streetName [MAX_NUM_WORDS];
-string mileage [MAX_NUM_WORDS];
+string direction[MAX_NUM_WORDS];
+string streetName[MAX_NUM_WORDS];
+string mileage[MAX_NUM_WORDS];
 string UMW;
 string numDir;
 string destination;
@@ -33,10 +32,8 @@ double mileTotal=0.00;
 	//check to see if the command arg. are valid
 	if(argc != 2){
 		cout << "Usage: reverse [reverseTemplateFile]." << endl;
-	return 1;
+		return 1;
 	}// end if
-	
-	// open the file
 	ifstream file(argv[1]);
         if(!file){
 		cout << "Could not open template file " << argv[1] << "!" << endl;
@@ -56,16 +53,16 @@ double mileTotal=0.00;
 	getline(file,location);// which side is the final destination on
 	// thid takes the directions and flips them to be backwards.
 	for(int j=0; j<=NumDirection;j++){
-		if (direction[j] == "Right" || direction[j] == "R"){
-			direction[j]= 'L';
+		if (direction[j] == "Right" || direction[j] == "R" || direction[j] == "right"){
+			direction[j]= "L";
 		} // end if
-		else direction[j] = 'R';
+		else direction[j] = "R";
 	}// end for	
 	// this turns the ending direction to the opposite
-	if (location == "Right" || location == "R"){
-		location = 'L';
+	if (location == "Right" || location == "R" || location == "right"){
+		location = "L";
 	} // end if
-	else location = 'R';
+	else location = "R";
 	// below here prints out the directions	
 	cout << "How much does your gas (in/per gallons)? " ;
 	cin >> cost;
@@ -73,9 +70,16 @@ double mileTotal=0.00;
 	cin >> mpg;;
 	cout << "Start location " << destination << endl;	
 	//prints out the directions in reverse order
+	
 	for(int a = NumDirection-1; a >= 0 ; a--){	
-		cout << direction[a] << " on " << streetName[a] << " ("<< mileage[a] << " miles)" << endl;	
+		direction[a+1];
+		streetName[a];
+	 	mileage[a];
 	} //end for
+	cout << location << " on " << streetName[NumDirection-1] << " (" << mileage[NumDirection-1] << " miles)" << endl;
+	for(int p = NumDirection-2; p >= 0; p--){
+		cout << direction[p+1] << " on " << streetName[p] << " (" << mileage[p] << "miles)" << endl;
+	}//end for
 	cout << UMW << " is on the " << location << endl;
 	// this turns the mile string in to a double to do math with!
 	for(int m =0; m<=NumDirection; m++){ 
@@ -87,4 +91,5 @@ double mileTotal=0.00;
 
 	cout << "Your " << mileTotal << "-mile round trip will cost you $";
 	cout << setprecision(3) << gasTotal << endl;
+return 0;
 }// end of main
