@@ -13,7 +13,7 @@
 #include <iomanip>
 using namespace std;
 
-const int MAX_NUM_WORDS = 10000;
+const int MAX_NUM_WORDS = 100000;
 
 
 int main(int argc, char *argv[]){
